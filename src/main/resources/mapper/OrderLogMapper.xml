@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisdemo.Mapper.OrderLogMapper">
+	<resultMap id="BaseResultMap" type="com.example.mybatisdemo.pojo.OrderLog">
+	  <result column="id" jdbcType="BIGINT" property="id" />
+	  <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+	  <result column="op_type" jdbcType="VARCHAR" property="opType" />
+	  <result column="op_result" jdbcType="VARCHAR" property="opResult" />
+	  <result column="audit_user_id" jdbcType="INTEGER" property="auditUserId" />
+	  <result column="extend" jdbcType="OTHER" property="extend" />
+	  <result column="remark" jdbcType="VARCHAR" property="remark" />
+	  <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	  <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <trim prefix="(" prefixOverrides="and" suffix=")">
+      <if test="orderNo != null" >
+	      and order_no = #{orderNo,jdbcType=VARCHAR}
+	    </if>
+      <if test="opType != null" >
+	      and op_type = #{opType,jdbcType=VARCHAR}
+	    </if>
+      <if test="opResult != null" >
+	      and op_result = #{opResult,jdbcType=VARCHAR}
+	    </if>
+      <if test="auditUserId != null" >
+	      and audit_user_id = #{auditUserId,jdbcType=INTEGER}
+	    </if>
+      <if test="extend != null" >
+	      and extend = #{extend,jdbcType=OTHER}
+	    </if>
+      <if test="remark != null" >
+	      and remark = #{remark,jdbcType=VARCHAR}
+	    </if>
+      <if test="createTime != null" >
+	      and create_time = #{createTime,jdbcType=TIMESTAMP}
+	    </if>
+      <if test="updateTime != null" >
+	      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+	    </if>
+	  </trim>
+    </where>
+  </sql>
+  <sql id="Example_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null">
+        op_type = #{opType,jdbcType=VARCHAR},
+      </if>
+      <if test="opResult != null">
+        op_result = #{opResult,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUserId != null">
+        audit_user_id = #{auditUserId,jdbcType=INTEGER},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=OTHER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      </trim>
+    </set>
+  </sql>
+  <sql id="Base_Column_List">
+    id,
+    order_no,
+    op_type,
+    op_result,
+    audit_user_id,
+    extend,
+    remark,
+    create_time,
+    update_time,
+  </sql>
+  <sql id="Base_Set_Clause">
+    <set>
+      <trim suffixOverrides=",">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+        op_type = #{opType,jdbcType=VARCHAR},
+        op_result = #{opResult,jdbcType=VARCHAR},
+        audit_user_id = #{auditUserId,jdbcType=INTEGER},
+        extend = #{extend,jdbcType=OTHER},
+        remark = #{remark,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </trim>
+    </set>
+  </sql>
+  <sql id="Selective_Column_List">
+    <if test="orderNo != null">
+      order_no,
+    </if>
+    <if test="opType != null">
+      op_type,
+    </if>
+    <if test="opResult != null">
+      op_result,
+    </if>
+    <if test="auditUserId != null">
+      audit_user_id,
+    </if>
+    <if test="extend != null">
+      extend,
+    </if>
+    <if test="remark != null">
+      remark,
+    </if>
+    <if test="createTime != null">
+      create_time,
+    </if>
+    <if test="updateTime != null">
+      update_time,
+    </if>
+  </sql>
+	<sql id="Base_Value_List">
+    #{id,jdbcType=BIGINT},
+    #{orderNo,jdbcType=VARCHAR},
+    #{opType,jdbcType=VARCHAR},
+    #{opResult,jdbcType=VARCHAR},
+    #{auditUserId,jdbcType=INTEGER},
+    #{extend,jdbcType=OTHER},
+    #{remark,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP},
+    #{updateTime,jdbcType=TIMESTAMP},
+	</sql>
+  <sql id="Selective_Value_List">
+    <if test="orderNo != null">
+      #{orderNo,jdbcType=VARCHAR},
+    </if>
+    <if test="opType != null">
+      #{opType,jdbcType=VARCHAR},
+    </if>
+    <if test="opResult != null">
+      #{opResult,jdbcType=VARCHAR},
+    </if>
+    <if test="auditUserId != null">
+      #{auditUserId,jdbcType=INTEGER},
+    </if>
+    <if test="extend != null">
+      #{extend,jdbcType=OTHER},
+    </if>
+    <if test="remark != null">
+      #{remark,jdbcType=VARCHAR},
+    </if>
+    <if test="createTime != null">
+      #{createTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updateTime != null">
+      #{updateTime,jdbcType=TIMESTAMP},
+    </if>
+  </sql>
+  
+  <select id="selectByExample" parameterType="com.example.mybatisdemo.pojo.OrderLogQuery" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from order_log
+    <include refid="Example_Where_Clause" />
+    <!-- order by CREATE_DATE -->
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <trim suffixOverrides=",">
+      <include refid="Base_Column_List" />
+    </trim>
+    from order_log
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_log
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.mybatisdemo.pojo.OrderLogQuery">
+    delete from order_log
+    <include refid="Example_Where_Clause" />
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatisdemo.pojo.OrderLog">
+    insert into order_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Base_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Base_Value_List"/>
+    </trim>
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatisdemo.pojo.OrderLog">
+    insert into order_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Column_List"/>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <include refid="Selective_Value_List"/>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.mybatisdemo.pojo.OrderLogQuery" resultType="java.lang.Integer">
+    select count(*) from order_log
+    <include refid="Example_Where_Clause" />
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatisdemo.pojo.OrderLog">
+    update order_log
+    <include refid="Example_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatisdemo.pojo.OrderLog">
+    update order_log
+    <include refid="Base_Set_Clause"/>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
